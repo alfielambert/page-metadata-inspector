@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<title>Page Metadata Inspector</title>
+<link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header class="app-header">
+    <div class="app-title">
+      <span class="app-name">Page Metadata Inspector</span>
+    </div>
+  </header>
+
+  <main id="content" class="content">
+    <div id="loading" class="state-message">Inspecting page…</div>
+
+    <div id="unavailable" class="state-message" hidden>
+      <p class="state-title">This page can't be inspected.</p>
+      <p class="state-detail">Browser-internal pages, the Chrome Web Store, and some restricted pages don't allow extensions to read their content.</p>
+    </div>
+
+    <div id="results" class="layout" hidden>
+
+      <div class="col col-metadata">
+
+        <section class="panel" id="section-core">
+          <h2 class="panel-title">Core metadata</h2>
+          <div class="field">
+            <div class="field-label"><span class="dot" data-dot="title"></span>Title</div>
+            <div class="field-value" id="val-title"></div>
+            <div class="field-note" id="note-title"></div>
+          </div>
+          <div class="field">
+            <div class="field-label"><span class="dot" data-dot="description"></span>Meta description</div>
+            <div class="field-value" id="val-description"></div>
+            <div class="field-note" id="note-description"></div>
+          </div>
+          <div class="field">
+            <div class="field-label"><span class="dot" data-dot="canonical"></span>Canonical URL</div>
+            <div class="field-value" id="val-canonical"></div>
+          </div>
+          <div class="field">
+            <div class="field-label"><span class="dot" data-dot="robots"></span>Robots</div>
+            <div class="field-value" id="val-robots"></div>
+          </div>
+          <div class="field">
+            <div class="field-label"><span class="dot" data-dot="h1"></span>H1 elements</div>
+            <div class="field-value" id="val-h1"></div>
+          </div>
+        </section>
+
+        <section class="panel" id="section-og">
+          <h2 class="panel-title">Open Graph</h2>
+          <div class="field">
+            <div class="field-label"><span class="dot" data-dot="og-title"></span>og:title</div>
+            <div class="field-value" id="val-og-title"></div>
+          </div>
+          <div class="field">
+            <div class="field-label"><span class="dot" data-dot="og-description"></span>og:description</div>
+            <div class="field-value" id="val-og-description"></div>
+          </div>
+          <div class="field">
+            <div class="field-label"><span class="dot" data-dot="og-image"></span>og:image</div>
+            <div class="field-value" id="val-og-image"></div>
+          </div>
+          <div class="field">
+            <div class="field-label"><span class="dot" data-dot="og-url"></span>og:url</div>
+            <div class="field-value" id="val-og-url"></div>
+          </div>
+          <div class="field">
+            <div class="field-label"><span class="dot" data-dot="og-type"></span>og:type</div>
+            <div class="field-value" id="val-og-type"></div>
+          </div>
+        </section>
+
+        <section class="panel" id="section-twitter">
+          <h2 class="panel-title">Twitter / X card</h2>
+          <div class="field">
+            <div class="field-label"><span class="dot" data-dot="tw-card"></span>twitter:card</div>
+            <div class="field-value" id="val-tw-card"></div>
+          </div>
+          <div class="field">
+            <div class="field-label"><span class="dot" data-dot="tw-title"></span>twitter:title</div>
+            <div class="field-value" id="val-tw-title"></div>
+          </div>
+          <div class="field">
+            <div class="field-label"><span class="dot" data-dot="tw-description"></span>twitter:description</div>
+            <div class="field-value" id="val-tw-description"></div>
+          </div>
+          <div class="field">
+            <div class="field-label"><span class="dot" data-dot="tw-image"></span>twitter:image</div>
+            <div class="field-value" id="val-tw-image"></div>
+          </div>
+        </section>
+
+        <section class="panel" id="section-jsonld">
+          <h2 class="panel-title">Structured data (JSON-LD)</h2>
+          <div class="field">
+            <div class="field-label"><span class="dot" data-dot="jsonld"></span>Blocks found</div>
+            <div class="field-value" id="val-jsonld-count"></div>
+          </div>
+          <div class="field" id="field-jsonld-types">
+            <div class="field-label">Detected types</div>
+            <div class="field-value" id="val-jsonld-types"></div>
+          </div>
+          <div class="field-note" id="note-jsonld-errors"></div>
+        </section>
+
+      </div>
+
+      <div class="col col-status">
+
+        <section class="panel status-panel" id="section-status">
+          <h2 class="panel-title">Overall status</h2>
+          <div class="status-lockup">
+            <span class="status-dot" id="status-dot"></span>
+            <span class="status-label" id="status-label"></span>
+          </div>
+          <div id="status-empty-state" class="status-empty" hidden>
+            <p class="status-empty-detail" id="status-empty-detail"></p>
+            <p class="status-empty-qualifier">This checks page metadata only and does not guarantee search rankings or social performance.</p>
+          </div>
+        </section>
+
+        <section class="panel issues-panel" id="section-issues" hidden>
+          <h2 class="panel-title">Issues found</h2>
+          <div class="issues-container" id="issues-container"></div>
+        </section>
+
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="app-footer">
+    <button id="copy-btn" class="copy-btn" disabled>Copy report</button>
+    <span id="copy-feedback" class="copy-feedback" aria-live="polite"></span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>
